@@ -3,11 +3,16 @@ package co.edu.unisabana.parcialarquitectura.service;
 
 import co.edu.unisabana.parcialarquitectura.repository.Database;
 
-public class Buy {
+public class Buy implements BuyInterface{
 
+  Database database;
 
+  public Buy(Database database) {
+    this.database = database;
+  }
+
+  @Override
   public String makePurchase(int vendorCode, int buyerCode, String item) {
-    Database database = new Database();
     if (buyerCode == vendorCode) {
       throw new IllegalSaleException(vendorCode, buyerCode);
     }
